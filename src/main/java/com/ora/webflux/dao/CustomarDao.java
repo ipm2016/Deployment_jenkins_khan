@@ -14,7 +14,7 @@ import reactor.core.publisher.Flux;
 public class CustomarDao {
 
 	public List<Customer> getCustomers() throws Exception {
-		return IntStream.rangeClosed(1, 50)
+		return IntStream.rangeClosed(1, 5)
 				.peek(i -> {
 					try {
 						Thread.sleep(1000);
@@ -29,7 +29,7 @@ public class CustomarDao {
 	
 	
 	public Flux<Customer> getCustomersWithFlux() throws Exception {
-		return Flux.range(1, 50)
+		return Flux.range(1, 5)
 				.delayElements(Duration.ofSeconds(1))
 				.doOnNext(i -> System.out.println("proccesing customer"+i))
 				.map(i -> new Customer(i, "customer" + i));
